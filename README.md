@@ -15,7 +15,7 @@ Please replace all user variables in the below command defined by ```<>``` with 
 docker run -d \
   --name=<container name> \  
   -v <path for config files>:/config \
-  -v <path for tv shows>:/data
+  -v <path for downloads and media>:/data
   -v /etc/localtime:/etc/localtime:ro \
   -p <port>:8989 \
   -e PUID=<uid for user> \
@@ -28,7 +28,7 @@ docker run -d \
 docker run -d \
   --name=sonarr \
   -v /config:/config \
-  -v /TV:/data
+  -v /storage:/data
   -v /etc/localtime:/etc/localtime:ro \
   -p 8989:8989 \
   -e PUID=99 \
