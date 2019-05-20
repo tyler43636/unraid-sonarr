@@ -1,13 +1,15 @@
-FROM mono:4.2
+FROM mono:5
 
-MAINTAINER Tyler Payne <tyler43636@gmail.com>
+LABEL maintainer Tyler Payne <tyler43636@gmail.com>
 
 # install jackett
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FDA5DFFC && \
+RUN apt update && \
+  apt install -qy gnupg2 && \
+  apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FDA5DFFC && \
   echo "deb http://apt.sonarr.tv/ master main" | tee /etc/apt/sources.list.d/sonarr.list && \
-  apt-get -q update && \
-  apt-get install -qy supervisor nzbdrone && \
-  apt-get clean && \
+  apt -q update && \
+  apt install -qy supervisor nzbdrone && \
+  apt clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # add supervisor file for application
